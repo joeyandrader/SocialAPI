@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using RedeSocialAPI.src.Base.Utils;
+
+namespace RedeSocialAPI.Models.Data
+{
+    public class Usuario
+    {
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string? FirstName { get; set; }
+
+        [Required]
+        [MaxLength(150)]
+        public string? LastName { get; set; }
+
+        [Required]
+        public string? Email { get; set; }
+
+        [Required]
+        [MaxLength(20)]
+        public string? Password { get; set; }
+
+        [DefaultValue(0)]
+        public AccountType AccountType { get; set; } = AccountType.Comum;
+
+        [DefaultValue(false)]
+        public bool Active { get; set; } = false;
+
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime UpdateAt { get; set; } = DateTime.Now;
+    }
+}
