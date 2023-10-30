@@ -65,12 +65,9 @@ namespace RedeSocialAPI.src.Repository
         /// <returns></returns>
         public async Task<Usuario> Update(Usuario updateDTO)
         {
-            var user = await _context.Usuarios.Where(x => x.Id == updateDTO.Id).FirstOrDefaultAsync();
-            if (user == null)
-                throw new Exception("Usuario não encontrado");
             _context.Usuarios.Update(updateDTO);
             await _context.SaveChangesAsync();
-            return user;
+            return updateDTO;
         }
     }
 }
