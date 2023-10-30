@@ -22,6 +22,8 @@ namespace RedeSocialAPI.src.Services
         public async Task<Usuario> Create(Usuario createDTO)
         {
             createDTO.GeraPassHash(createDTO.Password);
+            createDTO.CreatedAt = DateTime.UtcNow;
+            createDTO.UpdateAt = DateTime.UtcNow;
             return await _repository.Create(createDTO);
         }
 
@@ -35,9 +37,17 @@ namespace RedeSocialAPI.src.Services
             return await _repository.Get(id);
         }
 
-        public async Task<Usuario> Update(int id, Usuario updateDTO)
+        public async Task<Usuario> Update(Usuario updateDTO)
         {
-            return await _repository.Update(id, updateDTO);
+            Usuario user = new Usuario()
+            {
+                Id = updateDTO.Id,
+                FirstName = updateDTO.FirstName,
+                LastName = updateDTO.LastName,
+                Email = updateDTO.Email,
+                Password = updateDTO.GeraPassHash(updateDTO.Password)
+            };
+            return await _repository.Update(user);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace RedeSocialAPI.src.Base.Utils
     {
         public static string GerarHash(this string content)
         {
-            var hash = SHA1.Create();
+            var hash = SHA512.Create();
             var encoding = new ASCIIEncoding();
             var array = encoding.GetBytes(content);
 

@@ -29,7 +29,6 @@ namespace RedeSocialAPI.Models.Data
         public int Idade { get; set; }
 
         [Required]
-        [MaxLength(20)]
         public string? Password { get; set; }
 
         [DefaultValue(0)]
@@ -38,8 +37,8 @@ namespace RedeSocialAPI.Models.Data
         [DefaultValue(false)]
         public bool Active { get; set; } = false;
 
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public DateTime UpdateAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime UpdateAt { get; set; } = DateTime.UtcNow;
 
 
         #region Methods
