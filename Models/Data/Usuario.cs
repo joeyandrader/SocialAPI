@@ -26,6 +26,9 @@ namespace RedeSocialAPI.Models.Data
         public string? Email { get; set; }
 
         [Required]
+        public int Idade { get; set; }
+
+        [Required]
         [MaxLength(20)]
         public string? Password { get; set; }
 
@@ -37,5 +40,29 @@ namespace RedeSocialAPI.Models.Data
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdateAt { get; set; } = DateTime.Now;
+
+
+        #region Methods
+        /// <summary>
+        /// Valida senha ao efetuar o login
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public bool ValidaSenha(string password)
+        {
+            return Password == password.GerarHash();
+        }
+
+
+        /// <summary>
+        /// Seta a hash password
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public string GeraPassHash(string password)
+        {
+            return Password = password.GerarHash();
+        }
+        #endregion
     }
 }

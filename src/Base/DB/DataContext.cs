@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RedeSocialAPI.Models.Data;
 using RedeSocialAPI.src.Base.Utils;
@@ -10,12 +6,13 @@ namespace RedeSocialAPI.src.Base.DB
 {
     public class DataContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder.UseNpgsql(AppSettings.SQLConnectionString));
-        }
+        public DataContext() { }
+        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
+
 
         //DbSet
-        public DbSet<Usuario> Usuarios;
+        public DbSet<Usuario> Usuarios { get; set; }
+
+
     }
 }

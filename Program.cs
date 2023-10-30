@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using RedeSocialAPI.src.Base.DB;
+using RedeSocialAPI.src.Base.Ioc;
 using RedeSocialAPI.src.Base.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,11 @@ builder.Services.AddSwaggerGen();
 //Load AppSettings
 AppSettings.LoadSettings(builder.Configuration);
 
+//Load Injection Dependencie
+Ioc.InjectionDependencie(builder.Services);
+
+//connectionSQL
+builder.Services.AddDbContext<DataContext>(opt => opt.UseNpgsql(AppSettings.SQLConnectionString));
 
 var app = builder.Build();
 
