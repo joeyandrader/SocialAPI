@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using RedeSocialAPI.Models.Data;
 using RedeSocialAPI.src.Base.Contracts.Repository;
 using RedeSocialAPI.src.Base.DB;
+using RedeSocialAPI.src.Base.Utils;
 
 namespace RedeSocialAPI.src.Repository
 {
@@ -68,6 +69,27 @@ namespace RedeSocialAPI.src.Repository
             _context.Usuarios.Update(updateDTO);
             await _context.SaveChangesAsync();
             return updateDTO;
+        }
+
+        /// <summary>
+        ///  Update a patch
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="updateDTO"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public async Task<Usuario> UpdateById(int id, Usuario updateDTO)
+        {
+            var source = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == id);
+            if (source == null)
+            {
+                throw new Exception("Dados não encontrado");
+            }
+            source = Utils.MapTo(source, updateDTO);
+            if (updateDTO.Password != null)
+                source.ChangePropertyValue("Password", CryptPassword.GerarHash(updateDTO.Password));
+            await _context.SaveChangesAsync();
+            return source;
         }
     }
 }

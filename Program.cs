@@ -1,4 +1,6 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using RedeSocialAPI.src.AutoMapper;
 using RedeSocialAPI.src.Base.DB;
 using RedeSocialAPI.src.Base.Ioc;
 using RedeSocialAPI.src.Base.Utils;
@@ -18,6 +20,11 @@ AppSettings.LoadSettings(builder.Configuration);
 
 //Load Injection Dependencie
 Ioc.InjectionDependencie(builder.Services);
+
+//AutoMapper
+IMapper mapper = MapperConfig.RegisterMaps().CreateMapper();
+builder.Services.AddSingleton(mapper);
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 //connectionSQL
 builder.Services.AddDbContext<DataContext>(opt => opt.UseNpgsql(AppSettings.SQLConnectionString));

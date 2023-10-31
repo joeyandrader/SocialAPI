@@ -12,5 +12,6 @@ namespace RedeSocialAPI.src.Base.Contracts.Repository
         Task<Usuario> Get(int id);
         Task<Usuario> Update(Usuario updateDTO);
         Task<bool> Delete(int id);
+        Task<Usuario> UpdateById(int id, Usuario updateDTO);
     }
 }

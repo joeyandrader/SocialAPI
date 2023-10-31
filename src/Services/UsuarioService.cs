@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using RedeSocialAPI.Models.Data;
+using RedeSocialAPI.Models.ViewObjects;
 using RedeSocialAPI.src.Base.Contracts.Repository;
 using RedeSocialAPI.src.Base.Contracts.Service;
 using RedeSocialAPI.src.Base.Utils;
@@ -13,9 +15,11 @@ namespace RedeSocialAPI.src.Services
     {
         #region Constructor
         private readonly IUsuarioRepository _repository;
-        public UsuarioService(IUsuarioRepository repository)
+        private readonly IMapper _mapper;
+        public UsuarioService(IUsuarioRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
         #endregion
 
@@ -48,6 +52,14 @@ namespace RedeSocialAPI.src.Services
                 Password = updateDTO.GeraPassHash(updateDTO.Password)
             };
             return await _repository.Update(user);
+        }
+
+
+
+        public async Task<Usuario> UpdateById(int id, UsuarioVO updateDTO)
+        {
+            var userMap = _mapper.Map<Usuario>(updateDTO);
+            return await _repository.UpdateById(id, userMap);
         }
     }
 }

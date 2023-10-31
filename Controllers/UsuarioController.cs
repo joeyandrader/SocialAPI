@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RedeSocialAPI.Models.Data;
+using RedeSocialAPI.Models.ViewObjects;
 using RedeSocialAPI.src.Base.Contracts.Service;
 using RedeSocialAPI.src.Base.Middlewares;
 using RedeSocialAPI.src.Base.Utils;
@@ -96,6 +97,19 @@ namespace RedeSocialAPI.Controllers
             catch (System.Exception ex)
             {
                 return BuildResponse(message: $"Error: {ex.Message}", success: user);
+            }
+        }
+
+        [HttpPatch("updatePatch/{id}")]
+        public async Task<ActionResult> UpdateById(int id, [FromBody] UsuarioVO updateDTO)
+        {
+            try
+            {
+                return BuildResponse(await _service.UpdateById(id, updateDTO));
+            }
+            catch (Exception ex)
+            {
+                return BuildResponse(message: $"Error: {ex.Message}", success: false);
             }
         }
 
