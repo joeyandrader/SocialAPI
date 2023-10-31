@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RedeSocialAPI.Models.Data;
 using RedeSocialAPI.Models.ViewObjects;
@@ -48,6 +49,7 @@ namespace RedeSocialAPI.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("Get/{id}")]
+        [Authorize(Roles = "Comum")]
         public async Task<ActionResult> Get(int id)
         {
             try
@@ -67,6 +69,7 @@ namespace RedeSocialAPI.Controllers
         /// <param name="updateDTO"></param>
         /// <returns></returns> <summary>
         [HttpPut("Update")]
+        [Authorize(Roles = "Comum")]
         public async Task<ActionResult> Update([FromBody] Usuario updateDTO)
         {
             try
@@ -87,6 +90,7 @@ namespace RedeSocialAPI.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("delete/{id}")]
+        [Authorize(Roles = "Comum")]
         public async Task<ActionResult> Delete(int id)
         {
             var user = await _service.Delete(id);
@@ -101,6 +105,7 @@ namespace RedeSocialAPI.Controllers
         }
 
         [HttpPatch("updatePatch/{id}")]
+        [Authorize(Roles = "Comum")]
         public async Task<ActionResult> UpdateById(int id, [FromBody] UsuarioVO updateDTO)
         {
             try
