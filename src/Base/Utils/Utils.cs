@@ -42,11 +42,6 @@ namespace RedeSocialAPI.src.Base.Utils
                     var updateValue = updateModel.GetType().GetProperty(property.Name)?.GetValue(updateModel, null);
                     if (updateValue != null)
                     {
-                        if (property.Name == "Password")
-                        {
-                            property.SetValue(current, CryptPassword.GerarHash(updateValue.ToString()), null);
-
-                        }
                         property.SetValue(current, updateValue, null);
                     }
                 end_Pula:
