@@ -12,7 +12,8 @@ namespace RedeSocialAPI.src.Base.DB
 
         //DbSet
         public DbSet<Usuario> Usuarios { get; set; }
-
+        public DbSet<Post> Postagem { get; set; }
+        public DbSet<Photos> Fotos { get; set; }
 
     }
 }

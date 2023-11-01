@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Microsoft.EntityFrameworkCore;
 using RedeSocialAPI.src.Base.Utils;
 
@@ -40,6 +42,13 @@ namespace RedeSocialAPI.Models.Data
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdateAt { get; set; } = DateTime.UtcNow;
 
+
+
+        #region Rellations
+        [XmlIgnore]
+        [JsonIgnore]
+        public ICollection<Post>? Postagens { get; set; }
+        #endregion
 
         #region Methods
         /// <summary>
