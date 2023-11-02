@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RedeSocialAPI.Models.Data;
 using RedeSocialAPI.src.Base.Contracts.Service;
 using RedeSocialAPI.src.Base.Middlewares;
@@ -23,6 +24,7 @@ namespace RedeSocialAPI.Controllers
         /// <param name="createDTO"></param>
         /// <returns></returns>
         [HttpPost("create")]
+        [Authorize(Roles = "Comum")]
         public async Task<ActionResult> Create([FromBody] Post createDTO)
         {
             try
@@ -42,6 +44,7 @@ namespace RedeSocialAPI.Controllers
         /// <param name="updateDTO"></param>
         /// <returns></returns>
         [HttpPatch("updatePatch/{id}")]
+        [Authorize(Roles = "Comum")]
         public async Task<ActionResult> UpdateById(int id, [FromBody] Post updateDTO)
         {
             try
@@ -61,6 +64,7 @@ namespace RedeSocialAPI.Controllers
         /// <param name="updateDTO"></param>
         /// <returns></returns>
         [HttpPut("update")]
+        [Authorize(Roles = "Comum")]
         public async Task<ActionResult> Update([FromBody] Post updateDTO)
         {
             try
@@ -79,6 +83,7 @@ namespace RedeSocialAPI.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("get/{id}")]
+        [Authorize(Roles = "Comum")]
         public async Task<ActionResult> Get(int id)
         {
             try
@@ -97,6 +102,7 @@ namespace RedeSocialAPI.Controllers
         /// <param name="createDTO"></param>
         /// <returns></returns>
         [HttpGet("list")]
+        [Authorize(Roles = "Comum")]
         public async Task<ActionResult> List()
         {
             try

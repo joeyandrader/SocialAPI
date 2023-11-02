@@ -12,6 +12,7 @@ namespace RedeSocialAPI.src.Services
         {
             _repository = repository;
         }
+        #endregion
 
         public async Task<Post> Create(Post createDTO)
         {
@@ -42,6 +43,5 @@ namespace RedeSocialAPI.src.Services
         {
             return await _repository.UpdateById(id, updateDTO);
         }
-        #endregion
     }
 }

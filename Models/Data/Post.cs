@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using RedeSocialAPI.src.Base.Contracts.Service;
+using RedeSocialAPI.src.Base.DB;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -26,7 +29,9 @@ namespace RedeSocialAPI.Models.Data
 
         [XmlIgnore]
         [JsonIgnore]
-        public ICollection<Post>? Like { get; set; }
+        public ICollection<Like>? Like { get; set; }
+
+
         #endregion
     }
 }

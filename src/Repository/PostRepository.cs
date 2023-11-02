@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RedeSocialAPI.Models.Data;
 using RedeSocialAPI.src.Base.Contracts.Repository;
+using RedeSocialAPI.src.Base.Contracts.Service;
 using RedeSocialAPI.src.Base.DB;
 using RedeSocialAPI.src.Base.Utils;
 
@@ -35,7 +36,9 @@ namespace RedeSocialAPI.src.Repository
 
         public async Task<Post> Get(int id)
         {
-            var post = await _context.Postagem.Where(post => post.Id == id).FirstOrDefaultAsync();
+            var post = await _context.Postagem.Where(post => post.Id == id)
+                .Include(foto => foto.Fotos)
+                .FirstOrDefaultAsync();
             if (post == null)
                 throw new Exception("Postagem não encontrada!");
             return post;
