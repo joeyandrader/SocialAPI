@@ -59,6 +59,20 @@ namespace RedeSocialAPI.src.Repository
         }
 
         /// <summary>
+        /// Get user info
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public async Task<Usuario> GetUserInfo(int id)
+        {
+            var user = await _context.Usuarios.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (user == null)
+                throw new Exception("Usuario não encontrado");
+            return user;
+        }
+
+        /// <summary>
         /// Update an user
         /// </summary>
         /// <param name="id"></param>

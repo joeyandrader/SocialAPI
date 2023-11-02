@@ -16,10 +16,12 @@ namespace RedeSocialAPI.src.Services
         #region Constructor
         private readonly IUsuarioRepository _repository;
         private readonly IMapper _mapper;
-        public UsuarioService(IUsuarioRepository repository, IMapper mapper)
+        private readonly IUserContextService _userContextService;
+        public UsuarioService(IUsuarioRepository repository, IMapper mapper, IUserContextService userContextService)
         {
             _repository = repository;
             _mapper = mapper;
+            _userContextService = userContextService;
         }
         #endregion
 
@@ -39,6 +41,12 @@ namespace RedeSocialAPI.src.Services
         public async Task<Usuario> Get(int id)
         {
             return await _repository.Get(id);
+        }
+
+        public async Task<Usuario> GetUserInfo()
+        {
+            var userId = _userContextService.GetUserContextData().Id;
+            return await _repository.GetUserInfo(userId);
         }
 
         public async Task<Usuario> Update(Usuario updateDTO)

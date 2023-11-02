@@ -62,6 +62,19 @@ namespace RedeSocialAPI.Controllers
             }
         }
 
+        [HttpGet("usrInfo")]
+        public async Task<ActionResult> GetUserInfo()
+        {
+            try
+            {
+                return BuildResponse(await _service.GetUserInfo());
+            }
+            catch (Exception ex)
+            {
+                return BuildResponse(message: $"{ex.Message}", success: false);
+            }
+        }
+
         /// <summary>
         /// Update user
         /// </summary>
