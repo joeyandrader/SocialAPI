@@ -36,6 +36,62 @@ namespace RedeSocialAPI.Controllers
         }
 
         /// <summary>
+        /// Update By Id postagem
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="updateDTO"></param>
+        /// <returns></returns>
+        [HttpPatch("updatePatch/{id}")]
+        public async Task<ActionResult> UpdateById(int id, [FromBody] Post updateDTO)
+        {
+            try
+            {
+                return BuildResponse(await _service.UpdateById(id, updateDTO), message: "Postagem atualizado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                return BuildResponse(message: $"{ex.Message}", success: false);
+            }
+        }
+
+        /// <summary>
+        /// Update postagem
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="updateDTO"></param>
+        /// <returns></returns>
+        [HttpPut("update")]
+        public async Task<ActionResult> Update([FromBody] Post updateDTO)
+        {
+            try
+            {
+                return BuildResponse(await _service.Update(updateDTO), message: "Postagem atualizado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                return BuildResponse(message: $"{ex.Message}", success: false);
+            }
+        }
+
+        /// <summary>
+        /// Get Postagem
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("get/{id}")]
+        public async Task<ActionResult> Get(int id)
+        {
+            try
+            {
+                return BuildResponse(await _service.Get(id));
+            }
+            catch (Exception ex)
+            {
+                return BuildResponse(message: $"{ex.Message}", success: false);
+            }
+        }
+
+        /// <summary>
         /// Lista postagem
         /// </summary>
         /// <param name="createDTO"></param>

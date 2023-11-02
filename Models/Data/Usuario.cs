@@ -50,6 +50,10 @@ namespace RedeSocialAPI.Models.Data
         [XmlIgnore]
         [JsonIgnore]
         public ICollection<Post>? Postagens { get; set; }
+
+        [XmlIgnore]
+        [JsonIgnore]
+        public ICollection<Like>? Like { get; set; }
         #endregion
 
         #region Methods

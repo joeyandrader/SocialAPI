@@ -19,6 +19,14 @@ namespace RedeSocialAPI.Models.Data
         public Usuario? Usuario { get; set; }
 
         public ICollection<Photos>? Fotos { get; set; } = new List<Photos>();
+
+        [XmlIgnore]
+        [JsonIgnore]
+        public ICollection<Comentarios>? Comentario { get; set; }
+
+        [XmlIgnore]
+        [JsonIgnore]
+        public ICollection<Post>? Like { get; set; }
         #endregion
     }
 }
