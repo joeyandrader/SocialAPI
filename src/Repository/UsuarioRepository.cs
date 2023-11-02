@@ -42,7 +42,7 @@ namespace RedeSocialAPI.src.Repository
             var user = await _context.Usuarios.Where(x => x.Id == id).FirstOrDefaultAsync();
             if (user != null)
                 _context.Usuarios.Remove(user);
-            return (await _context.SaveChangesAsync()) > 0;
+            return await _context.SaveChangesAsync() > 0;
         }
 
         /// <summary>

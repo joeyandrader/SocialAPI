@@ -12,10 +12,12 @@ namespace RedeSocialAPI.src.Base.Ioc
             //Services
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IPostService, PostService>();
 
             //Repository
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IPostRepository, PostRepository>();
         }
     }
 }

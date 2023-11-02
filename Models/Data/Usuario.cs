@@ -28,7 +28,9 @@ namespace RedeSocialAPI.Models.Data
         public string? Email { get; set; }
 
         [Required]
-        public int Idade { get; set; }
+        public int Age { get; set; }
+
+        public string? Biography { get; set; }
 
         [Required]
         public string? Password { get; set; }
