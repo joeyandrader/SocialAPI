@@ -46,7 +46,12 @@ namespace RedeSocialAPI.src.Repository
 
         public async Task<List<Post>> List()
         {
-            var listPost = await _context.Postagem.ToListAsync();
+            var listPost = await _context.Postagem
+                .Include(x => x.Fotos)
+                .Include(x => x.Usuario)
+                .Include(x => x.Comentario)
+                .Include(x => x.Like)
+                .ToListAsync();
             if (!listPost.Any())
                 throw new Exception("Não ah nenhuma postagem");
             return listPost;

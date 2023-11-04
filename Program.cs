@@ -104,12 +104,13 @@ builder.Services.AddDbContext<DataContext>(opt => opt.UseNpgsql(AppSettings.SQLC
 builder.Services.AddControllers();
 builder.Services.AddCors(opt =>
 {
-    opt.AddPolicy(name: "MyCorsPolicyName",
+    opt.AddPolicy("MyCorsPolicyName",
         builder =>
         {
-            builder.AllowAnyOrigin();
-            builder.AllowAnyHeader();
-            builder.AllowAnyMethod();
+            builder.WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
         });
 
 });

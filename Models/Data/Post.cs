@@ -11,25 +11,20 @@ namespace RedeSocialAPI.Models.Data
     {
         [Key]
         public int Id { get; set; }
+        public string? Title { get; set; }
         public string? Text { get; set; }
         public int UsuarioId { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdateAt { get; set; } = DateTime.UtcNow;
 
         #region ForeignKey
-        [XmlIgnore]
-        [JsonIgnore]
         public Usuario? Usuario { get; set; }
 
         public ICollection<Photos>? Fotos { get; set; } = new List<Photos>();
 
-        [XmlIgnore]
-        [JsonIgnore]
-        public ICollection<Comentarios>? Comentario { get; set; }
+        public ICollection<Comentarios>? Comentario { get; set; } = new List<Comentarios>();
 
-        [XmlIgnore]
-        [JsonIgnore]
-        public ICollection<Like>? Like { get; set; }
+        public ICollection<Like>? Like { get; set; } = new List<Like>();
 
 
         #endregion

@@ -41,6 +41,9 @@ namespace RedeSocialAPI.Models.Data
         [DefaultValue(false)]
         public bool Active { get; set; } = false;
 
+        [DefaultValue("profileDefault.png")]
+        public string? ImageUrl { get; set; } = "profileDefault.png";
+
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdateAt { get; set; } = DateTime.UtcNow;
 
