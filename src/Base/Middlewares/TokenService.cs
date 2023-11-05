@@ -10,7 +10,6 @@ namespace RedeSocialAPI.src.Base.Middlewares
 {
     public static class TokenService
     {
-
         public static AuthResponse GenerateToken(Usuario request)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
