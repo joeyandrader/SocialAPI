@@ -11,6 +11,8 @@ using RedeSocialAPI.src.Base.Utils;
 
 namespace RedeSocialAPI.Models.Data
 {
+    [Index(nameof(Email), IsUnique = true)] //Faz com que o email seja unico
+    [Index(nameof(Username), IsUnique = true)] //Faz com que o username seja unico
     public class Usuario
     {
         [Key]
@@ -23,6 +25,8 @@ namespace RedeSocialAPI.Models.Data
         [Required]
         [MaxLength(150)]
         public string? LastName { get; set; }
+
+        [MaxLength(50)]
         public string? Username { get; set; }
 
         [Required]
