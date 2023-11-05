@@ -23,6 +23,7 @@ namespace RedeSocialAPI.Models.Data
         [Required]
         [MaxLength(150)]
         public string? LastName { get; set; }
+        public string? Username { get; set; }
 
         [Required]
         public string? Email { get; set; }
