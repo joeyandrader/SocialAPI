@@ -14,12 +14,14 @@ namespace RedeSocialAPI.src.Base.Ioc
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<IPhotoService, PhotoService>();
+            services.AddScoped<ILikeRepository, LikeRepository>();
 
             //Repository
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IPostRepository, PostRepository>();
             services.AddScoped<IPhotosRepository, PhotoRepository>();
+            services.AddScoped<ILikeService, LikeService>();
         }
     }
 }

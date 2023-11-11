@@ -10,5 +10,6 @@ namespace RedeSocialAPI.src.Base.Contracts.Repository
         Task<Like> Update(Like updateDTO);
         Task<Like> UpdateById(int id, Like updateDTO);
         Task<bool> Delete(int id);
+        Task<Like> GetExistLike(int postId);
     }
 }

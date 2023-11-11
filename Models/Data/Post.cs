@@ -20,11 +20,11 @@ namespace RedeSocialAPI.Models.Data
         #region ForeignKey
         public Usuario? Usuario { get; set; }
 
-        public ICollection<Photos>? Fotos { get; set; } = new List<Photos>();
+        public List<Photos>? Fotos { get; set; }
 
-        public ICollection<Comentarios>? Comentario { get; set; } = new List<Comentarios>();
+        public List<Comentarios>? Comentario { get; set; }
 
-        public ICollection<Like>? Like { get; set; } = new List<Like>();
+        public List<Like>? Like { get; set; }
 
 
         #endregion

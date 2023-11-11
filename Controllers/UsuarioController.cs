@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RedeSocialAPI.Models.Data;
 using RedeSocialAPI.Models.ViewObjects;
 using RedeSocialAPI.src.Base.Contracts.Service;
 using RedeSocialAPI.src.Base.Middlewares;
-using RedeSocialAPI.src.Base.Utils;
 
 namespace RedeSocialAPI.Controllers
 {

@@ -38,6 +38,7 @@ namespace RedeSocialAPI.src.Repository
         {
             var post = await _context.Postagem.Where(post => post.Id == id)
                 .Include(foto => foto.Fotos)
+                .Include(like => like.Like)
                 .FirstOrDefaultAsync();
             if (post == null)
                 throw new Exception("Postagem não encontrada!");
