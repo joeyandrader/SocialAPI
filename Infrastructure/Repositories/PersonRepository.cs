@@ -12,13 +12,13 @@ namespace Infrastructure.Repositories
         {
             try
             {
-                Person? result = await _connection.ExecuteScalarAsync<Person>(PersonQuery.Create(), new
+                var result = await _connection.QueryFirstOrDefaultAsync<Person>(PersonQuery.Create(), new
                 {
                     UserName = createDTO.UserName,
                     Email = createDTO.Email,
                     PasswordHash = createDTO.PasswordHash,
                     Bio = createDTO.Bio,
-                    ProfileImg = createDTO.ProfilePictureUrl
+                    ProfileUrl = createDTO.ProfilePictureUrl
                 });
 
                 if (result == null)
@@ -28,28 +28,62 @@ namespace Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _connection.ExecuteAsync(PersonQuery.Delete(), new
+            {
+                Id = id
+            });
+            if (result == 0)
+                throw new Exception("Erro ao deletar usuario!");
+            return result == 1;
         }
 
-        public Task<IEnumerable<Person>> GetAllAsync()
+        public async Task<IEnumerable<Person>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _connection.QueryAsync<Person>(PersonQuery.GetAll());
         }
 
-        public Task<Person> GetAsync(int id)
+        public async Task<Person> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Person? result = await _connection.QueryFirstOrDefaultAsync<Person>(PersonQuery.Get(), new
+                {
+                    Id = id
+                });
+
+                if (result == null)
+                    throw new Exception("Usuario não encontrado!");
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public Task<Person> UpdateAsync(int id, Person updateDTO)
+        public async Task<Person> UpdateAsync(int id, Person updateDTO)
         {
-            throw new NotImplementedException();
+            Person? result = await _connection.QueryFirstOrDefaultAsync<Person>(PersonQuery.Update(), new
+            {
+                UserName = updateDTO.UserName,
+                Email = updateDTO.Email,
+                PasswordHash = updateDTO.PasswordHash,
+                Bio = updateDTO.Bio,
+                ProfilePictureUrl = updateDTO.ProfilePictureUrl,
+                Id = id
+            });
+
+            if (result == null)
+                throw new Exception("Erro ao atualizar usuario!");
+
+            return result;
         }
     }
 }

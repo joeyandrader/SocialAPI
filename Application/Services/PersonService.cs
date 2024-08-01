@@ -1,11 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
 using Domain.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services
 {
@@ -16,24 +11,24 @@ namespace Application.Services
             return await _repository.CreateAsync(createDTO);
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _repository.DeleteAsync(id);
         }
 
-        public Task<IEnumerable<Person>> GetAllAsync()
+        public async Task<IEnumerable<Person>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _repository.GetAllAsync();
         }
 
-        public Task<Person> GetAsync(int id)
+        public async Task<Person> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _repository.GetAsync(id);
         }
 
-        public Task<Person> UpdateAsync(int id, Person updateDTO)
+        public async Task<Person> UpdateAsync(int id, Person updateDTO)
         {
-            throw new NotImplementedException();
+            return await _repository.UpdateAsync(id, updateDTO);
         }
     }
 }

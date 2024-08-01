@@ -1,4 +1,5 @@
 using Application.Utils;
+using Infrastructure.Ioc;
 using Npgsql;
 using System.Data;
 
@@ -14,6 +15,8 @@ builder.Services.AddSwaggerGen();
 //AppSettings
 AppSettings.LoadSettings(builder.Configuration);
 
+//Dependency Injection
+Ioc.LoadDependencyInjection(builder.Services);
 //Connection with postgres dapper
 builder.Services.AddScoped<IDbConnection>(conn => new NpgsqlConnection(AppSettings.ConnectionString));
 
