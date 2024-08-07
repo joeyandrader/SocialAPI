@@ -38,7 +38,14 @@ namespace Infrastructure.Querys
         public static string Get()
         {
             StringBuilder str = new();
-            str.Append(@"SELECT * FROM public.persons WHERE id = @Id");
+            str.Append(@"SELECT id,
+                                username,
+                                email,
+                                bio,
+                                profilepictureurl,
+                                createdat,
+                                updatedat 
+                        FROM public.persons WHERE id = @Id");
             return str.ToString();
         }
 

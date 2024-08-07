@@ -3,7 +3,6 @@ using Application.Services;
 using Domain.Repositories;
 using Domain.Services;
 using Infrastructure.Repositories;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.Ioc
 {
@@ -13,14 +12,17 @@ namespace Infrastructure.Ioc
         {
             #region Services
             services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IPostService, PostService>();
             #endregion
 
             #region Facade
             services.AddScoped<PersonFacade>();
+            services.AddScoped<PostFacade>();
             #endregion
 
             #region Repository
             services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IPostRepository, PostRepository>();
             #endregion
 
         }

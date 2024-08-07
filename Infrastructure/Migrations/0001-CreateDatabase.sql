@@ -11,7 +11,7 @@ CREATE TABLE Persons (
 
 CREATE TABLE Posts (
     Id SERIAL PRIMARY KEY,
-    UserId INT REFERENCES Persons(Id),
+    PersonId INT REFERENCES Persons(Id),
     Title VARCHAR(255) NOT NULL,
     Content TEXT NOT NULL,
     ImageUrl VARCHAR(255),
@@ -22,7 +22,7 @@ CREATE TABLE Posts (
 CREATE TABLE Comments (
     Id SERIAL PRIMARY KEY,
     PostId INT REFERENCES Posts(Id),
-    UserId INT REFERENCES Persons(Id),
+    PersonId INT REFERENCES Persons(Id),
     Content TEXT NOT NULL,
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UpdatedAt TIMESTAMP 
